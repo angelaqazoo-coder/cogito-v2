@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cogito — Think Aloud</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <!-- ── Background grain ── -->
+  <canvas id="grain"></canvas>
+
+  <div id="app">
+    <!-- ── Header ── -->
+    <header>
+      <div class="logo">
+        <span class="logo-icon">◈</span>
+        <span class="logo-text">Cogito</span>
+      </div>
+      <div id="status-pill">
+        <span class="dot"></span>
+        <span id="status-text">idle</span>
+      </div>
+    </header>
+
+    <!-- ── Main canvas ── -->
+    <main>
+      <!-- Camera / screen preview -->
+      <div id="visual-panel">
+        <video id="camera-feed" autoplay playsinline muted></video>
+        <canvas id="capture-canvas" style="display:none"></canvas>
+        <div id="visual-overlay">
+          <span id="visual-label">camera off</span>
+        </div>
+        <div id="visual-controls">
+          <button class="icon-btn" id="btn-camera" title="Toggle camera">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M15 10l4.553-2.069A1 1 0 0121 8.882v6.236a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/>
+            </svg>
+          </button>
+          <button class="icon-btn" id="btn-screen" title="Share screen">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="2" y="3" width="20" height="14" rx="2"/>
+              <path d="M8 21h8M12 17v4"/>
+            </svg>
+          </button>
+          <button class="icon-btn" id="btn-snap" title="Send snapshot to Cogito">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M3 9a2 2 0 012-2h1l2-2h8l2 2h1a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Transcript / dialogue feed -->
+      <div id="dialogue-panel">
+        <div id="transcript"></div>
+        <div id="thinking-indicator">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </main>
+
+    <!-- ── Bottom controls ── -->
+    <footer>
+      <div id="waveform-container">
+        <canvas id="waveform"></canvas>
+      </div>
+
+      <button id="btn-mic" class="mic-btn" aria-label="Hold to speak">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M12 1a4 4 0 014 4v6a4 4 0 01-8 0V5a4 4 0 014-4z"/>
+          <path d="M19 10a7 7 0 01-14 0M12 19v4M8 23h8"/>
+        </svg>
+        <span class="mic-label">hold to speak</span>
+      </button>
+
+      <div id="text-input-row">
+        <input id="text-input" type="text" placeholder="or type here…" autocomplete="off" />
+        <button id="btn-send">→</button>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ── LaTeX renderer ── -->
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+  <script src="/static/audio-processor.js"></script>
+  <script src="/static/app.js" type="module"></script>
+</body>
+</html>
